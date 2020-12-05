@@ -11,12 +11,18 @@
 
 <link rel="icon" href="icon.svg">
 <link rel="apple-touch-icon" href="touch-icon.png">
-
-<script>
-var url = "https://d73a01be9119.ngrok.io";
-window.location.replace(url);
-</script>
-
 </head>
+
+<body>
+  
+  <a id="link" href="https://d73a01be9119.ngrok.io" style="font-family: Arial;"> Redirect not working? Click here. </a>
+  
+  <script>
+  var el = document.getElementById('link');
+  var url = el.getAttribute('href');
+  window.location.replace(url);
+  </script>
+  
+</body>
 
 </html>
