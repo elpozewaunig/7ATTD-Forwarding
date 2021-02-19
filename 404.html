@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> 7A - Things To Do </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Pragma" content="no-cache">
+
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="touch-icon.png">
+
+<style>
+body {
+  background-color: #ffbb54;
+  margin: 10px;
+}
+
+a {
+  font-family: Arial;
+}
+</style>
+
+</head>
+
+<body>
+  
+  <a id="link" href="https://0fb72509fa5d.ngrok.io"> Redirect not working? Click here. </a>
+  
+  <script>
+  var el = document.getElementById('link');
+  var url = el.getAttribute('href');
+  var new_url = url + window.location.pathname;
+  window.location.replace(new_url);
+  </script>
+  
+</body>
+
+</html>
