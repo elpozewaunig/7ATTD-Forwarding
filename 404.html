@@ -15,12 +15,48 @@
 
 <style>
 body {
+  font-family: Arial;
   background-color: #ffbb54;
+  margin: 0px;
+}
+a#link {
+  display: inline-block;
   margin: 10px;
 }
-
-a {
-  font-family: Arial;
+div#server_down {
+  display: none;
+  
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  text-align: center;
+  
+  justify-content: center;
+  align-items: center;
+}
+img {
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+span.headline {
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+}
+a#try_anyway {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #ff6a00;
+  border-radius: 20px;
+  text-decoration: none;
+  
+  margin-top: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+a#try_anyway:hover {
+  background-color: #ff5400;
 }
 </style>
 
@@ -28,13 +64,50 @@ a {
 
 <body>
   
+  <div id="server_down">
+    <div>
+      <img src="touch-icon.png"> <br>
+      <span class="headline"> The server seems to be offline. </span>
+      <span> If you think this is an error, please contact me :) </span> <br>
+      <a id="try_anyway" href="">Redirect anyway ➔</a>
+    </div>
+  </div>
   <a id="link" href="https://16188409e6b7.eu.ngrok.io"> Redirect not working? Click here. </a>
   
   <script>
   var el = document.getElementById('link');
+  var error_message = document.getElementById('server_down');
+  var anyway_link = document.getElementById('try_anyway');
+  
   var url = el.getAttribute('href');
   var new_url = url + window.location.pathname + window.location.search;
-  window.location.replace(new_url);
+  
+  if(serverUp(url)) {
+    window.location.replace(new_url);
+  }
+  else {
+    anyway_link.href = new_url;
+    error_message.style.display = "flex";
+    el.style.display = "none";
+  }
+  
+  
+  function serverUp(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    var success = true;
+    try {
+      http.send();
+    }
+    catch(exception) {
+      if(exception.name == 'NetworkError') {
+        success = false;
+      }
+    }
+    
+    return success;
+    
+  }
   </script>
   
 </body>
