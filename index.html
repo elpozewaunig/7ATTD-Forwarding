@@ -80,7 +80,7 @@ a#try_anyway:hover {
   var anyway_link = document.getElementById('try_anyway');
   
   var url = el.getAttribute('href');
-  var new_url = url + window.location.search;
+  var new_url = url + window.location.search + window.location.hash;
   
   if(serverUp(url)) {
     window.location.replace(new_url);
